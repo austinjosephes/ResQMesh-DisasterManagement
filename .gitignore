@@ -32,3 +32,7 @@ tmp/
 # Build files
 build/
 dist/
+
+# SSL certificates and private keys
+*.pem
+*.key

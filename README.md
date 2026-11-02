@@ -5,18 +5,19 @@ Communication is the only medium which can act as a bridge between rescue operat
 
 To solve this issue, we just implemented a plan which can help to manage and resolve this serious issue. For this a pragmatic approach is required. So we developed a communication system "mobile with walkie talkie communication".
 I just seem funny right? but we just came that live. The project is now at initial phase. When builds a communication network which will be only active during disaster.
+
+# ResQMesh – Smart Disaster Rescue and Coordination System
+
+> **Current Implementation:** We have developed a Python-based communication server that enables a mobile phone and a laptop to communicate over a common Wi-Fi network. The Python server acts as an intermediary, allowing the devices to exchange voice messages through a local network. This is our initial software prototype, developed to demonstrate the basic concept of communication between multiple devices.
+
+> **Future Scope:** Our vision is to develop a dedicated communication network that allows multiple devices to communicate with each other, similar to walkie-talkies, without depending on conventional mobile networks or internet connectivity. The proposed system will use dedicated radio transmitter and receiver hardware, Software-Defined Radio (SDR) technology for digital signal modulation and demodulation, and antennas to transmit and receive Radio Frequency (RF) signals. We also propose a water-based floating communication module, designed like an inflatable swimming tube with a 3-metre antenna mast, to act as an additional communication relay during disaster situations.
+
+> ⚠️ **Development Status:** The current implementation is a software-based Wi-Fi communication prototype. Dedicated radio communication, SDR hardware integration, RF transmission, and the floating communication module are future development goals.
+
 ---
- 
-> **During a disaster, communication should never become another obstacle to rescue.**
- 
-ResQMesh is our attempt to rethink emergency communication. When towers go down and networks fail, people still need a way to say *"we're here, we need help."* We are exploring how a mobile app, digital signal processing, radio links, and an elevated floating relay can work together to carry that message to rescuers.
- 
-> ⚠️ **Honest status:** ResQMesh is an early-stage project. What exists today is a **working software prototype**. The floating relay and physical radio link are **design concepts** that still need hardware, safety evaluation, and real-world testing. We've been careful to mark what is built and what is not.
- 
----
- 
+
 ## 📖 Table of Contents
- 
+
 1. [The Big Idea](#-the-big-idea)
 2. [How the Proposed System Works](#-how-the-proposed-system-works)
 3. [Why a Floating Relay?](#-why-a-floating-relay)
@@ -28,238 +29,363 @@ ResQMesh is our attempt to rethink emergency communication. When towers go down 
 9. [Development Status](#-development-status)
 10. [What's Next](#-whats-next)
 11. [Our Vision](#-our-vision)
+
 ---
- 
+
 ## 💡 The Big Idea
- 
-In a flood, cyclone, or earthquake, the first thing to fail is often the thing people need most: **communication**. Cell towers lose power, roads are blocked, and the people who most need help can't reach anyone.
- 
-ResQMesh asks a simple question:
- 
-> *What if we lifted the communication equipment above the damage?*
- 
+
+Communication is one of the most critical requirements during a disaster. When floods, landslides, earthquakes, or other emergencies occur, conventional communication infrastructure can become unavailable due to damaged mobile towers, power failures, or network congestion.
+
+But what happens when the communication system itself becomes a problem?
+
+ResQMesh aims to explore an alternative communication infrastructure that can help people exchange emergency information even when conventional communication networks are unavailable.
+
+The project follows two development stages:
+
+### Stage 1 – Software Communication Prototype
+
+A Python server connects a mobile phone and a laptop over a common Wi-Fi network, demonstrating basic voice-message communication.
+
+### Stage 2 – Dedicated Radio Communication Network
+
+Develop a hardware-based communication system using SDR technology, radio transmitters, receivers, and antennas to enable communication between multiple devices without depending on conventional cellular infrastructure.
+
+The long-term concept also includes a floating communication relay that can be deployed on suitable water bodies during disaster situations.
+
 ---
- 
-## 🔄 How the Proposed System Works
- 
-Here is the full journey of a message in the system we are working towards:
- 
-1. A person opens the **ResQMesh mobile interface** and sends a voice message or emergency request.
-2. Their phone connects to a nearby **communication gateway**.
-3. The gateway passes the information to the **floating relay** over a suitable wireless connection.
-4. The floating unit sends it onward through an **RF link** to another receiving station.
-5. The **receiving station** hands the recovered information to the **ground server**.
-6. The **backend** processes it and makes it available to authorized **rescue operators**.
-7. Operators respond and coordinate help.
-And it works in **both directions**. Rescue operators can send messages back along the same path to the people who need them.
- 
-```mermaid
-flowchart LR
-    A[📱 Mobile Interface] --> B[Communication Gateway]
-    B --> C[🎈 Floating Relay]
-    C -->|RF Link| D[Ground Receiving Station]
-    D --> E[Backend Server]
-    E --> F[🖥️ Rescue Dashboard]
-    F --> G[🚑 Rescue Operators]
-    G -.->|Reply path| A
-```
- 
-> The exact hardware, wireless access method, radio frequency, and communication protocol will be finalized in later development stages.
- 
----
- 
-## 🎈 Why a Floating Relay?
- 
-Disasters damage infrastructure, and the terrain itself gets in the way. Buildings, hills, and damaged roads all weaken ground-level wireless signals.
- 
-Our idea is to go **up**. A **tethered balloon or aerostat** could carry antennas and radio equipment above those obstacles.
- 
-**Potential advantages**
- 
-- Better line-of-sight communication in suitable terrain
-- An elevated point for relaying signals
-- Possible communication support for isolated areas
-- Deployable infrastructure for emergency operations
-**Reality check:** actual coverage depends on antenna height, frequency, transmit power, antenna characteristics, terrain, interference, and more. The floating relay is currently a **design concept** and needs hardware development, safety evaluation, and practical testing.
- 
----
- 
-## 🧪 What We Have Built So Far
- 
-We didn't want ResQMesh to stay a nice diagram. So we started by building a **software prototype** to learn how voice can be transmitted, processed, and recovered.
- 
-Our first implementation is a **mobile-to-server voice communication system**.
- 
-**Current prototype components**
- 
-- A browser-based voice recording interface
-- A Python server that receives audio from a client
-- Local network communication between devices
-- WAV audio processing
-- Software-based **BPSK** modulation and demodulation
-- A simulated communication channel
-- Audio reconstruction on the receiving side
+
+## 🌐 How the Proposed System Works
+
+The proposed system consists of mobile devices, communication gateways, a floating radio relay, and a ground receiving station.
+
+### Proposed Communication Architecture
+
 ```mermaid
 flowchart TD
-    A[Mobile Phone / Browser] --> B[Voice Recording]
-    B --> C[Audio Data]
-    C --> D[Local Wi-Fi Network]
-    D --> E[Python Server]
-    E --> F[Audio Processing]
-    F --> G[BPSK Software Simulation]
-    G --> H[Demodulation and Recovery]
-    H --> I[Recovered Audio]
-    I --> J[Receiver Interface]
+    A[People in Disaster-Affected Areas]
+    B[Mobile Devices]
+    C[Communication Gateway]
+    D[Floating Communication Module]
+    E[RF Communication Link]
+    F[Ground Receiving Station]
+    G[Local Backend Server]
+    H[Emergency Control Dashboard]
+    I[Rescue Operators]
+
+    A --> B
+    B <--> C
+    C <--> D
+    D <--> E
+    E <--> F
+    F <--> G
+    G <--> H
+    H <--> I
 ```
- 
-In plain words: the phone's browser records audio and sends it over local Wi-Fi to a Python server. The server runs it through a software BPSK simulation and rebuilds the audio for the receiver to play back.
- 
-> 🚧 **This is not yet a physical radio communication system.**
- 
+
+### Explanation of Each Component
+
+1. **Mobile Devices:** People use their mobile phones to send emergency messages or voice communications.
+2. **Communication Gateway:** Provides an interface between mobile devices and the dedicated radio communication system.
+3. **Floating Communication Module:** Acts as a proposed intermediate communication relay deployed on water.
+4. **RF Communication Link:** Carries information through radio-frequency electromagnetic waves.
+5. **Ground Receiving Station:** Receives radio transmissions and forwards the recovered information to the local backend.
+6. **Local Backend Server:** Processes and manages incoming communication data.
+7. **Emergency Control Dashboard:** Allows authorized rescue operators to view and coordinate emergency communication.
+
+The proposed architecture is not yet implemented. The exact radio links, gateway hardware, and communication protocols will be determined during development.
+
 ---
- 
-## 🔍 How Data Travels in the Prototype
- 
-Here is the step-by-step flow, from your voice to the receiver's speaker.
- 
-| Step | What happens |
-|------|--------------|
-| **1. Voice capture** | The user records a message in the mobile browser, using its microphone access. |
-| **2. Audio conversion** | The recording becomes a WAV file: **16,000 Hz**, **mono**, **16-bit**. |
-| **3. Wireless transfer** | The browser sends the audio to the Python server by **HTTP over the local network**. Both devices must be on a reachable network. |
-| **4. Server processing** | The server receives the audio and processes it with **NumPy** and **SciPy**. |
-| **5. BPSK simulation** | Audio samples are turned into binary data, mapped to BPSK symbols, sent through a simulated channel with added noise, then demodulated and recovered bit by bit. |
-| **6. Audio reconstruction** | The recovered bits are converted back to audio samples and saved as a WAV file. |
-| **7. Playback** | The receiver interface requests the processed audio from the server and plays it. |
- 
-**What is BPSK?** Binary Phase Shift Keying represents 0s and 1s using two carrier phase states that are **180° apart**.
- 
-> **Important distinction:** Right now, audio travels over **local Wi-Fi**. BPSK is **simulated in software** after the server receives the audio. **No actual RF signal is transmitted through an antenna yet.**
- 
+
+## 🌊 Why a Floating Relay?
+
+One of the proposed components of ResQMesh is a compact floating communication module.
+
+Unlike an aerial balloon or a large boat, this module is envisioned as an inflatable floating structure similar to a swimming tube, with a central equipment enclosure and a vertical antenna mast approximately 3 metres high.
+
+### Proposed Physical Components
+
+- **Floating Body:** Provides buoyancy and keeps the communication module on the water surface.
+- **Waterproof Electronics Enclosure:** Protects the radio equipment, controller, and battery.
+- **Antenna Mast:** Supports the antenna above the water surface.
+- **SDR Equipment:** Handles radio signal processing, including modulation and demodulation.
+- **Power Supply:** Provides energy to the communication equipment.
+- **Anchoring Mechanism:** Helps keep the module in its intended deployment location.
+
+### Why Use a Floating Module?
+
+- Provides an additional communication point in suitable water-based disaster environments.
+- Can potentially improve radio coverage through an elevated antenna position.
+- Provides a platform for deploying radio equipment in areas where conventional infrastructure is damaged.
+- Can potentially connect isolated communication gateways with a ground receiving station.
+
+**Engineering Considerations:** The floating structure must remain stable under wind and water movement. The mast needs suitable structural support, and the electronics require marine-grade waterproofing. Communication range will depend on frequency, antenna design, height, transmit power, and environmental conditions.
+
 ---
- 
-## 🚀 From Prototype to Floating Relay
- 
-The prototype teaches us the software side. The next big challenge is replacing the local-network link with a real **radio link**.
- 
-**Today**
- 
-```
-Mobile Browser
-      |
-      |  Local Wi-Fi
-      |
-Python Server
-      |
-Software BPSK Simulation
-      |
-Recovered Audio
-```
- 
-**Where we are heading**
- 
-```
-Mobile Interface
-      |
-Communication Gateway
-      |
-Floating Relay Unit
-      |
-Physical RF Transmission
-      |
-Ground Receiving Station
-      |
-Backend Server
-      |
-Emergency Control Dashboard
-      |
-Rescue Operator
-```
- 
-The future system will need suitable radio hardware, antennas, a compatible protocol, and testing in a **legally permitted frequency band**.
- 
-A note on phones and radios: implementing BPSK in software does **not** mean a phone can automatically talk to an SDR. We will need a compatible **radio gateway or interface** to connect the mobile app to the RF system.
- 
+
+## 🛠️ What We Have Built So Far
+
+Our initial implementation focuses on establishing communication between two devices using a Python-based server.
+
+### Current Prototype Components
+
+| Component | Purpose |
+|---|---|
+| Python Server | Handles communication between devices |
+| Laptop | Runs the local server |
+| Mobile Phone | Acts as a voice-message sender or receiver |
+| Common Wi-Fi Network | Provides connectivity between devices |
+| Browser Interface | Provides the communication interface |
+| Audio Processing | Handles recorded and recovered voice data |
+
+### What the Prototype Demonstrates
+
+- Establishing communication between a laptop and a mobile phone.
+- Connecting devices through a common Wi-Fi network.
+- Sending voice recordings to a Python server.
+- Processing audio data through the server.
+- Making audio available to the receiving device.
+
+This implementation validates the initial software communication workflow. It is not yet a standalone walkie-talkie or an infrastructure-independent radio communication system.
+
 ---
- 
+
+## 🔄 How Data Travels in the Prototype
+
+The current prototype follows a simple client-server communication architecture.
+
+### Prototype Communication Flow
+
+```mermaid
+flowchart TD
+    A[Mobile Phone]
+    B[Browser Interface]
+    C[Common Wi-Fi Network]
+    D[Python Communication Server]
+    E[Audio Processing]
+    F[Receiver Laptop or Mobile]
+    G[Recovered Voice Message]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+```
+
+### Step-by-Step Explanation
+
+1. A user records a voice message using the mobile browser.
+2. The browser sends the recorded audio to the Python server.
+3. The Python server receives and processes the audio.
+4. The processed audio is made available to the receiving device.
+5. The receiver retrieves and plays the voice message.
+
+Both devices must be connected to a reachable common network.
+
+### Important Distinction
+
+The current prototype uses Wi-Fi communication. It does not transmit audio through a dedicated SDR transmitter or a physical RF antenna.
+
+---
+
+## 📡 From Prototype to Floating Relay
+
+The next major development stage is to move from Wi-Fi-based communication to a dedicated radio communication system.
+
+To understand this, we need to understand the main technologies involved.
+
+### 1. Digital Voice Communication
+
+When a person speaks, the microphone captures sound waves and converts them into an electrical audio signal.
+
+An Analog-to-Digital Converter (ADC) converts that signal into digital samples.
+
+These samples can then be encoded into binary data (0s and 1s) for digital communication.
+
+### 2. Digital Modulation
+
+Digital modulation is the process of representing digital information using changes in a radio carrier signal.
+
+For example, **BPSK (Binary Phase Shift Keying)** represents binary information using two different carrier phases, separated by 180 degrees.
+
+The transmitter maps the digital bits into modulated symbols before sending them through the radio system.
+
+### 3. SDR – Software-Defined Radio
+
+SDR stands for **Software-Defined Radio**.
+
+Traditional radio devices use dedicated hardware circuits for many radio functions. SDR moves several of these functions into software, providing flexibility to configure and experiment with different communication techniques.
+
+In ResQMesh, SDR is proposed for:
+
+- Digital modulation at the transmitter.
+- Generating and processing radio signals.
+- Receiving RF signals.
+- Demodulating received signals.
+- Recovering the transmitted digital information.
+
+SDR hardware still requires suitable RF front-end components, including frequency conversion and amplification where necessary.
+
+### 4. Radio Transmitter
+
+A radio transmitter converts the processed information into a suitable RF signal and sends it through an antenna.
+
+The general process is:
+
+`Digital Data → Modulation → RF Signal Generation → Antenna → Radio Transmission`
+
+### 5. Radio Receiver
+
+A radio receiver captures incoming radio signals through its receiving antenna and processes them to recover the transmitted information.
+
+The general process is:
+
+`Receiving Antenna → RF Front End → SDR Processing → Demodulation → Recovered Digital Data`
+
+### 6. Antenna and RF Communication
+
+RF stands for **Radio Frequency**.
+
+Radio waves are electromagnetic waves used for wireless communication.
+
+An antenna converts electrical RF signals into electromagnetic waves during transmission. During reception, it converts incoming electromagnetic waves into electrical signals that can be processed by the receiver.
+
+The antenna does not independently decode the information. The receiver and its signal-processing components perform that task.
+
+### 7. Two-Way Walkie-Talkie Communication
+
+To enable multiple devices to communicate like walkie-talkies, the system must support both transmission and reception.
+
+Each communication device will need a suitable radio interface, and the network will need a protocol to manage:
+
+- Multiple users.
+- Communication channels.
+- Message addressing.
+- Transmission conflicts.
+- Message acknowledgement.
+- Error detection and retransmission.
+
+The exact communication protocol and radio architecture are still part of the planned development.
+
+### Proposed Hardware Communication Flow
+
+```mermaid
+flowchart TD
+    A[Microphone]
+    B[ADC and Audio Encoding]
+    C[Digital Binary Data]
+    D[Digital Modulation using SDR]
+    E[RF Transmitter]
+    F[Transmitting Antenna]
+    G[Radio Wave Propagation]
+    H[Receiving Antenna]
+    I[RF Receiver]
+    J[SDR Demodulation]
+    K[Recovered Digital Data]
+    L[Audio Decoding]
+    M[Speaker]
+
+    A --> B --> C --> D --> E --> F
+    F --> G --> H --> I --> J --> K --> L --> M
+```
+
+This is the intended digital radio communication workflow, not the current prototype implementation.
+
+---
+
 ## 🧩 Other Planned Modules
- 
-ResQMesh is about more than voice. These modules are planned and will be built and integrated step by step.
- 
-### 🆘 SOS and Rescue Coordination
-Citizens can submit an SOS with emergency details and available location information. A control-room dashboard lets authorized operators review incidents, assign rescue teams, track progress, and confirm safety.
- 
-### 🌦️ Weather Intelligence
-Rainfall, temperature, humidity, wind speed, precipitation probability, and weather warnings, so authorities can understand conditions in affected regions.
- 
-### 🔋 Ultra Battery Saver
-An emergency-focused mobile interface with quick access to essential apps and battery-saving settings for when charging isn't available.
- 
+
+Beyond the communication network, ResQMesh may include additional disaster-management features.
+
+### 1. SOS and Rescue Coordination
+
+- Emergency SOS message submission.
+- Location sharing when available and authorized.
+- Incident identification and tracking.
+- Rescue team assignment.
+- Emergency status updates.
+
+### 2. Weather Intelligence
+
+Integration with weather services to display:
+
+- Temperature.
+- Humidity.
+- Rainfall and precipitation probability.
+- Wind speed and direction.
+- Weather warnings.
+
+These details can help rescue operators make better-informed decisions.
+
+### 3. Ultra Battery Saver
+
+An emergency-focused mobile interface designed to reduce unnecessary battery consumption and provide quick access to essential emergency communication features.
+
+Actual battery management will depend on Android system permissions and device capabilities.
+
 ---
- 
-## 🛠️ Technology Stack
- 
-| Component | Technology |
-|-----------|------------|
-| Mobile interface | HTML, CSS, JavaScript |
-| Backend server | Python |
-| Audio recording | Browser MediaRecorder |
-| Audio processing | NumPy, SciPy |
-| Audio format | WAV |
-| Current networking | Local Wi-Fi / HTTP(S) |
-| Digital modulation | BPSK software simulation |
-| Future radio communication | SDR hardware |
-| Future signal processing | GNU Radio |
-| Proposed dashboard | React |
-| Proposed database | PostgreSQL / Firebase |
-| Proposed weather integration | Weather API |
-| Proposed Android module | Kotlin / Android Studio |
- 
+
+## 💻 Technology Stack
+
+The following technologies represent the current prototype and proposed development stack.
+
+| Technology | Intended Use | Status |
+|---|---|---|
+| Python | Communication server and processing | Current prototype |
+| Wi-Fi | Local device connectivity | Current prototype |
+| HTML, CSS, JavaScript | Browser communication interface | Current prototype |
+| NumPy / SciPy | Digital signal processing experiments | Prototype experiments |
+| SDR | Radio signal processing | Planned |
+| RF Transmitter | Radio signal transmission | Planned |
+| RF Receiver | Radio signal reception | Planned |
+| Antenna | RF transmission and reception | Planned |
+| Weather API | Weather information | Planned |
+| Android | Emergency mobile interface | Planned |
+
 ---
- 
-## 📊 Development Status
- 
+
+## 🚧 Development Status
+
 | Feature | Status |
-|---------|--------|
-| Browser-based voice recording | ✅ Implemented in prototype |
-| Python voice server | ✅ Implemented in prototype |
-| Local Wi-Fi audio transfer | ✅ Demonstrated |
-| WAV audio processing | ✅ Implemented in prototype |
-| BPSK software simulation | ✅ Demonstrated |
-| Simulated channel and noise | ✅ Demonstrated |
-| Audio demodulation and reconstruction | ✅ Demonstrated |
-| Floating communication relay | 💭 Proposed |
-| Physical SDR transmission | ❌ Not implemented |
-| Antenna-based RF communication | ❌ Not implemented |
-| SOS and rescue dashboard | 📝 Planned |
-| Weather intelligence | 📝 Planned |
-| Ultra Battery Saver | 📝 Planned |
- 
+|---|---|
+| Python communication server | Implemented |
+| Mobile-to-laptop communication over Wi-Fi | Prototype working |
+| Voice recording and transfer | Prototype implemented |
+| Software BPSK simulation | Experiment completed |
+| Dedicated multi-device radio network | Planned |
+| SDR transmitter and receiver integration | Planned |
+| Physical RF communication | Not implemented |
+| Floating communication module | Design concept |
+| SOS and rescue dashboard | Planned |
+| Weather integration | Planned |
+| Ultra Battery Saver | Planned |
+
 ---
- 
-## 🗺️ What's Next
- 
-Our next stages are about taking ResQMesh beyond software simulation:
- 
-- [ ] Improve the current voice communication prototype
-- [ ] Implement reliable sender-to-receiver message delivery
-- [ ] Design a gateway between mobile devices and radio equipment
-- [ ] Select suitable SDR transmitter and receiver hardware
-- [ ] Build a physical BPSK transmission and reception pipeline
-- [ ] Design and test suitable antennas
-- [ ] Develop the floating relay communication unit
-- [ ] Establish relay-to-ground-station communication
-- [ ] Build the SOS reporting and emergency dashboard
-- [ ] Integrate weather information
-- [ ] Develop the Android emergency interface
-- [ ] Run controlled end-to-end tests
+
+## 🎯 What's Next
+
+Our development roadmap focuses on progressing from a software prototype to a functional radio communication system.
+
+1. Improve the existing Python communication server.
+2. Implement reliable voice communication between multiple devices.
+3. Develop a communication protocol for device identification and message delivery.
+4. Experiment with digital modulation and demodulation.
+5. Integrate SDR transmitter and receiver hardware.
+6. Establish a physical RF communication link using suitable antennas.
+7. Design and construct the floating communication module.
+8. Connect the floating relay with a ground receiving station.
+9. Develop SOS and rescue coordination functionality.
+10. Conduct controlled communication-range, reliability, and field tests.
+
+All physical radio experiments will follow applicable frequency allocation and transmission regulations.
+
 ---
- 
+
 ## 🌍 Our Vision
- 
-We want to explore a communication system that can be deployed when conventional infrastructure becomes unreliable.
- 
-ResQMesh brings together mobile technology, digital signal processing, radio communication, elevated relay infrastructure, and disaster-response coordination. We're starting small with a software prototype, learning and validating each stage, and working step by step towards something that can support real rescue operations.
- 
-**Because during a disaster, communication should never become another obstacle to rescue.** 💙
- 
+
+We envision a communication system that can help people stay connected when conventional communication infrastructure fails.
+
+ResQMesh is an attempt to explore how software-based communication, digital radio technology, and floating communication infrastructure can work together to support disaster response.
+
+**Connecting Information. Coordinating Rescue. Confirming Safety.**

@@ -1,7 +1,7 @@
 # 🛟 ResQMesh 
 
-It is a communication technique when an unexpected disaster was carried out !
-Communication is the only medium which can act as a bridge between rescue operator and the victim. What if the communication itself become a Disaster!!
+Communication has a key role during unexpected disaster was carried out!
+It is the only medium which can act as a bridge between rescue operator and the victim. What if the communication itself become a Disaster!!
 
 To solve this issue, we just implemented a plan which can help to manage and resolve this serious issue. For this a pragmatic approach is required. So we developed a communication system "mobile with walkie talkie communication".
 I just seem funny right? but we just came that live. The project is now at initial phase. When builds a communication network which will be only active during disaster.

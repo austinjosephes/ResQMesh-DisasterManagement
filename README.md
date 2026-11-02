@@ -1,11 +1,11 @@
-# ResQMesh-Smart-Disaster-Rescue-and-Coordination-System
+# 🛟 ResQMesh 
+
 It is a communication technique when an unexpected disaster was carried out !
 Communication is the only medium which can act as a bridge between rescue operator and the victim. What is the communication has been become a Disaster!!
 
 To solve this issue, we just implemented a plan which can help to manage and resolve this serious issue. For this a pragmatic approach is required. So we developed a communication system "mobile with walkie talkie communication".
 I just seem funny right? but we just came that live. The project is now at initial phase. When builds a communication network which will be only active during disaster.
-
-# 🛟 ResQMesh
+---
  
 > **During a disaster, communication should never become another obstacle to rescue.**
  

@@ -36,3 +36,7 @@ dist/
 # SSL certificates and private keys
 *.pem
 *.key
+
+# Generated audio and runtime files
+latest_received.wav
+latest_info.json

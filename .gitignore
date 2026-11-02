@@ -40,3 +40,6 @@ dist/
 # Generated audio and runtime files
 latest_received.wav
 latest_info.json
+
+# Audio recordings
+*.wav
